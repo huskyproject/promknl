@@ -27,3 +27,6 @@ distclean: clean
 install:
 	$(INSTALL) $(IBOPT) pmknl$(EXE) $(BINDIR)
 
+uninstall:
+	-$(RM) $(BINDIR)$(DIRSEP)pmknl$(EXE)
+
