@@ -341,7 +341,7 @@ Var
  Cfg^.BadDir := AddDirSep(Ini.ReadEntry('GENERAL', 'BAD'));
  Cfg^.OutPath := AddDirSep(Ini.ReadEntry('GENERAL', 'OUTPATH'));
  Cfg^.MailDir := AddDirSep(Ini.ReadEntry('GENERAL', 'MAILDIR'));
- Cfg^.Netmail := AddDirSep(Ini.ReadEntry('GENERAL', 'NETMAIL'));
+ Cfg^.Netmail := Ini.ReadEntry('GENERAL', 'NETMAIL');
 
  If Ini.GetSecNum(SecName) = 0 then
   Begin

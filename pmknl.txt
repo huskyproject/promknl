@@ -7,7 +7,7 @@ Sample pmknl.cfg etc. are included.
 
 It's similar to MkNL, so consult the documentation of MkNL first.
 
-Author: Sascha Silbe, 2:2435/424, Sascha.Silbe@ldknet.org
+Author: Sascha Silbe, 2:2435/424, Sascha@silbe.org
 
 environment variables:
 PMKNL           path where PMKNL.CFG can be found (if nothing is found there,
