@@ -15,6 +15,9 @@ Uses
 {$IfDef VP}
  OS2Base, OS2Def,
 {$EndIf}
+{$IfDef Linux}
+ Linux,
+{$EndIf}
  dos,
  mkglobt, mkmisc, mkmsgabs, mkmsgfid, mkmsgezy, mkmsgjam, mkmsghud, mkmsgsqu,
  crc, types, generalp, log, inifile2;
@@ -87,12 +90,15 @@ Const
 
  cPhoneChars : Set of Char = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '.', '*', '#'];
 
- cNumFlags = 46;
- cFlags : Array[1..cNumFlags] of String[10] = ('CM', 'MO', 'LO', 'V21', 'V22',
-  'V29', 'V32', 'V32B', 'V33', 'V34', 'H96', 'HST', 'H14', 'H16', 'MAX', 'PEP',
-  'CSP', 'ZYX', 'Z19', 'VFC', 'V32T', 'MNP', 'V42', 'V42B', 'V90C', 'V90S',
-  'X2C', 'X2S', 'X75', 'V110H', 'V110L', 'ISDN', 'MN', 'XA', 'XB', 'XC', 'XP',
-  'XR', 'XW', 'XX', '#01', '#02', '#03', '#09', '#18', '#20');
+ cNumFlags = 47;
+ cFlags : Array[1..cNumFlags] of String[10] = (
+  'CM', 'MO', 'LO',
+  'MN', 'XA', 'XB', 'XC', 'XP', 'XR', 'XW', 'XX',
+  'V21', 'V22', 'V29', 'V32', 'V32B', 'V33', 'V34', 'V34+', 'H96', 'HST',
+  'H14', 'H16', 'MAX', 'PEP', 'CSP', 'ZYX', 'Z19', 'VFC', 'V32T',
+  'V90C', 'V90S', 'X2C', 'X2S', 'X75', 'V110H', 'V110L', 'ISDN',
+  'MNP', 'V42', 'V42B',
+  '#01', '#02', '#03', '#09', '#18', '#20');
 
 
 Type
@@ -1104,6 +1110,9 @@ Var
   LogSetCurLevel(lh, 1);
   LogWriteLn(lh, 'Could not close "'+Cfg^.CreateBatch+'"!');
   End;
+{$IfDef Linux}
+ ChMod(Cfg^.CreateBatch, 493); {Octal 755}
+{$EndIf}
  LogSetCurLevel(lh, 3);
  LogWriteLn(lh, 'created batch '+Cfg^.CreateBatch);
  End;
@@ -1147,7 +1156,7 @@ Var
      Delete(s, p, 4);
      Insert(IntToStr(DT.Year), s, p);
      End;
-    WriteLn(f, s);
+    Write(f, s, #13#10);
     End;
    {$I-} Close(ftc); {$I+}
    If (IOResult <> 0) then
@@ -1162,7 +1171,7 @@ Var
  Today(DT); Now(DT);
  If (DT.Year < 38) then DT.Year := DT.Year + 2000
  Else If (DT.Year < 1900) then DT.Year := DT.Year + 1900;
- WriteLn('Day #'+IntToStr(DayOfYear(DT)));
+ Write('Day #'+IntToStr(DayOfYear(DT)), #13#10);
  FSplit(Cfg^.OutFile, s, fn, s);
  Assign(f, Cfg^.OutPath+fn+'.tmp');
  {$I-} ReWrite(f); {$I+}
@@ -1184,9 +1193,9 @@ Var
  {copy DATA-lines from config}
  If (Cfg^.NumData > 0) then For i := 1 to Cfg^.NumData do
   Begin
-  WriteLn(f, Cfg^.Data^[i]);
+  Write(f, Cfg^.Data^[i], #13#10);
   End;
- WriteLn(f, ';A');
+ Write(f, ';A', #13#10);
 
  {copy FILES}
  If (Cfg^.NumFiles > 0) then For i := 1 to Cfg^.NumFiles do
@@ -1194,7 +1203,7 @@ Var
   If FileExist(Cfg^.UpdateDir+Cfg^.Files^[i].UPD) then
    Begin
    CopyFile(Cfg^.UpdateDir+Cfg^.Files^[i].UPD, False, Cfg^.Files^[i].SkipComments);
-   WriteLn(f, ';A');
+   Write(f, ';A', #13#10);
    End;
   End;
 
@@ -1236,9 +1245,10 @@ Var
  {add copyright}
  If (Cfg^.NLType = cTcomposite) then
   Begin
-  WriteLn(f1, ';A '+Cfg^.NetName + ' Nodelist for '+WkDaysEng[DT.DayOfWeek]+', '+
+  Write(f1, ';A '+Cfg^.NetName + ' Nodelist for '+WkDaysEng[DT.DayOfWeek]+', '+
              MonthsEng[DT.Month]+' '+IntToStr(DT.Day)+', '+IntToStr(DT.Year)+
-             ' -- Day number '+IntToStr(DayOfYear(DT))+' : ' + IntToStr(CRC));
+             ' -- Day number '+IntToStr(DayOfYear(DT))+' : ' + IntToStr(CRC),
+             #13#10);
   End;
 
   While not EOF(f) do
@@ -1248,7 +1258,7 @@ Var
     s[0] := Char(Byte(s[0])-1);
    If (s = '') then Continue;
    If (s[1] = #26) then Continue;
-   WriteLn(f1, s);
+   Write(f1, s, #13#10);
    End;
 
  {$I-} Close(f1); {$I+}
