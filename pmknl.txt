@@ -1,0 +1,14 @@
+
+                          ProMkNL - documentation
+
+Not finished yet.
+
+
+Author: Sascha Silbe, 2:2435/424, Sascha.Silbe@ldknet.org
+
+environment variables:
+PMKNL           path where PMKNL.CFG can be found (if nothing is found there,
+                the current directory is used)
+MSGID           path where msgid.dat can be found (if nothing is found there,
+                the master directory from the config is used)
+

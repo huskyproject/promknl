@@ -1,0 +1,6 @@
+- documentation
+- only send UPDs if changed
+- Diffs (own program, called from batch)
+- check DATA-lines
+- check for duplicate nodes/hubs/hosts/regions/zones
+

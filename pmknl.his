@@ -1,0 +1,22 @@
+History of ProMkNL:
+(- note, + added, * fixed)
+
+Version 0.9beta3:
+- first beta-release
+
+Version 0.9beta4
+* some fixes
+- ignoring EOF in UPDs
+- ignoring empty lines in UPDs
+
+Version 0.9beta5
+* really ignoring EOF in UPDs (previously ignored ESC instead)
++ SkipComments skips comments in UPDs
+
+Version 0.9beta6
+* lines with only a semicolon (and not even a space after it) are now
+  correctly identified as comments
+
+Version 0.9beta7
++ added flags Z19, V90C, V90S, X2C, X2S, X75, V110H, V110L, ISDN
+
