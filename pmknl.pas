@@ -45,7 +45,7 @@ Const
   {$EndIf}
  {$EndIf}
 {$EndIf}
- +'0.9beta7';
+ +'0.9beta8';
 
  cSunday = 0;
  cMonday = 1;
@@ -90,13 +90,14 @@ Const
 
  cPhoneChars : Set of Char = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '.', '*', '#'];
 
- cNumFlags = 47;
+ cNumFlags = 49;
  cFlags : Array[1..cNumFlags] of String[10] = (
   'CM', 'MO', 'LO',
   'MN', 'XA', 'XB', 'XC', 'XP', 'XR', 'XW', 'XX',
   'V21', 'V22', 'V29', 'V32', 'V32B', 'V33', 'V34', 'V34+', 'H96', 'HST',
   'H14', 'H16', 'MAX', 'PEP', 'CSP', 'ZYX', 'Z19', 'VFC', 'V32T',
-  'V90C', 'V90S', 'X2C', 'X2S', 'X75', 'V110H', 'V110L', 'ISDN',
+  'V90C', 'V90S', 'X2C', 'X2S',
+  'X75', 'V110H', 'V110L', 'ISDN', 'V120H', 'V120L',
   'MNP', 'V42', 'V42B',
   '#01', '#02', '#03', '#09', '#18', '#20');
 

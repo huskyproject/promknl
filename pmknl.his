@@ -28,3 +28,6 @@ sms:
 - reorganized Makefiles, please read README.Makefiles in the husky-common
   package!
 
+Version 0.9beta8
++ added flags V120H, V120L
+

@@ -1,3 +1,4 @@
+- specify new flags in config
 - documentation
 - only send UPDs if changed
 - Diffs (own program, called from batch)
