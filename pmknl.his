@@ -31,3 +31,6 @@ sms:
 Version 0.9beta8
 + added flags V120H, V120L
 
+Version 0.9beta9
+- allow absolute path for UPD-files
+

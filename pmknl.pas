@@ -45,7 +45,7 @@ Const
   {$EndIf}
  {$EndIf}
 {$EndIf}
- +'0.9beta8';
+ +'0.9beta9';
 
  cSunday = 0;
  cMonday = 1;
@@ -118,7 +118,7 @@ Type
   Record
   Typ: Byte;
   PartAddr: Word;
-  UPD: String20;
+  UPD: String[100];
   NotifyAddr: TNetAddr;
   SkipComments: Boolean;
   End;
@@ -1201,10 +1201,21 @@ Var
  {copy FILES}
  If (Cfg^.NumFiles > 0) then For i := 1 to Cfg^.NumFiles do
   Begin
-  If FileExist(Cfg^.UpdateDir+Cfg^.Files^[i].UPD) then
+  if (pos(dirSep, cfg^.files^[i].upd) > 0) then
    Begin
-   CopyFile(Cfg^.UpdateDir+Cfg^.Files^[i].UPD, False, Cfg^.Files^[i].SkipComments);
-   Write(f, ';A', #13#10);
+   If FileExist(Cfg^.Files^[i].UPD) then
+    Begin
+    CopyFile(Cfg^.Files^[i].UPD, False, Cfg^.Files^[i].SkipComments);
+    Write(f, ';A', #13#10);
+    End;
+   End
+  Else
+   Begin
+   If FileExist(Cfg^.UpdateDir+Cfg^.Files^[i].UPD) then
+    Begin
+    CopyFile(Cfg^.UpdateDir+Cfg^.Files^[i].UPD, False, Cfg^.Files^[i].SkipComments);
+    Write(f, ';A', #13#10);
+    End;
    End;
   End;
 
