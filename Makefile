@@ -9,7 +9,7 @@ else
   POPT = -d$(OSTYPE) -Fu$(INCDIR) -dRELEASE
 endif
 
-PASFILES = crc32.pas crc.pas generalp.pas inifile.pas log.pas mkdos.pas mkffile.pas mkfile.pas mkglobt.pas mkmisc.pas mkmsgabs.pas mkmsgezy.pas mkmsgfid.pas mkmsghud.pas mkmsgjam.pas mkmsgsqu.pas mkopen.pas mkstring.pas pmknl.pas types.pas
+PASFILES = crc32.pas crc.pas generalp.pas inifile2.pas log.pas mkdos.pas mkffile.pas mkfile.pas mkglobt.pas mkmisc.pas mkmsgabs.pas mkmsgezy.pas mkmsgfid.pas mkmsghud.pas mkmsgjam.pas mkmsgsqu.pas mkopen.pas mkstring.pas pmknl.pas types.pas
 
 all: pmknl$(EXE)
 
@@ -18,8 +18,8 @@ pmknl$(EXE): $(PASFILES)
 
 clean:
 	-$(RM) *$(OBJ)
-        -$(RM) *$(TPU)
-        -$(RM) *~
+	-$(RM) *$(TPU)
+	-$(RM) *~
 
 distclean: clean
 	-$(RM) pmknl$(EXE)
