@@ -22,3 +22,9 @@ Version 0.9beta7
 + added flags Z19, V90C, V90S, X2C, X2S, X75, V110H, V110L, ISDN, V34+
 + setting permissions of created batch to 755 (rwxr-xr-x)
 
+----- cvs ci ------
+Thu Oct 16 13:40:00 MET DST 1999
+sms:
+- reorganized Makefiles, please read README.Makefiles in the husky-common
+  package!
+
