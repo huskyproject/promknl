@@ -3,6 +3,9 @@
 
 Not finished yet.
 
+Sample pmknl.cfg etc. are included.
+
+It's similar to MkNL, so consult the documentation of MkNL first.
 
 Author: Sascha Silbe, 2:2435/424, Sascha.Silbe@ldknet.org
 

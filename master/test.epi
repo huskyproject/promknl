@@ -1,0 +1,119 @@
+;S
+;S Informationen zur Erstellung der PointUpdates
+;S
+;S Was kommt in die einzelnen Felder in der Pointliste
+;S
+;S Aufbau der Host-Zeilen
+;S -----------------------------------------------------------------
+;S Syntax:   [netnumber/nodenumber]
+;S Host-Zeilen werden FTS-0005-konform aufgebaut. Jedoch wird
+;S in Feld 3 statt des Netznamens wie in FTS-0005 beschrieben, die
+;S 2d-Adresse des Bossnodes mit Zoneangabe angegeben. Dieser Eintrag
+;S ist zur Auswertung durch Pointlistkonverter bestimmt, die hieraus
+;S fuer jeden Pointeintrag eine gueltige 4d-Nummer erstellen koennen.
+;S
+;S Bsp.: Host,12000,4957/0,Wilnsdorf,Bernd_Buedenbender,49-2737-...
+;S                  ^^^^^^
+;S
+;S Der prinzipielle Aufbau einer Pointzeile lautet:
+;S
+;S   Statusfeld,Nummer,Systemname,City,Sysop,Phone,Max-Baud, (Nodelistflags)
+;S
+;S   Feld 1:  Statusfeld
+;S   -------------------
+;S   Syntax: [ | Hold | Down | Pvt ]
+;S   Hier koennen laut FTS-0005 fuer Nodeeintragungen die Statusflags
+;S   Hold, Down und Pvt benutzt werden. Da die Pointliste aber in aller
+;S   Regel meist hinterher in ein 4d-Format konvertiert wird, bereitet
+;S   insbesondere das Pvt-Statusflag bei Konvertierungen ins V7-Format
+;S   Kopfschmerzen, da nach der Umwandlung das Statusflag "Point"
+;S   in das 1. Feld eingetragen werden muss. Waehrend man noch relativ
+;S   locker ueber die Flags Hold und Down drueber hinwegsehen koennte,
+;S   funktioniert das beim Pvt-Flag nicht mehr so einfach. Da Pvt-
+;S   im Zusammenhang mit dem Phoneeintrag -Unpublished- verwendet
+;S   wird wuerde dadurch in den konvertierten Listen ein "-Unpublished-"
+;S   ohne Pvt-Flag stehen. Das wiederum geht laut FTS-0005-Vorschrift
+;S   wieder nicht. Demnach fallen saemtliche Pvt-Eintraege in V7-Listen
+;S   unter den Teppich .... (abhaengig vom benutzten Konverter).
+;S
+;S   Feld 3:  Systemname
+;S   -------------------
+;S   Fuer Systemnamenseintraege steht das Feld 3, wo derzeit in der Regel
+;S   noch 2d-Adressen wie 4957/0 irgendwas stehen, zur Verfuegung.
+;S   Nach FTS-0005 ist dieses Feld fuer eine kurze praegnante Namensdefinition
+;S   fuer das jeweilige System bestimmt. Bis vor 2 Jahren benutzten
+;S   Konverter in diesem Feld eine enthaltene 3d-Adresse zur Konvertierung.
+;S   Das ist nicht mehr noetig! Da alle neueren Pointlistkonverter
+;S   sich die notwendige Info zur Erstellung einer gueltigen 4d-Pointadresse
+;S   aus der Hostzeile holen.
+;S   Wenn jemandem nicht gleich ein Systemname fuer jeden Point einfaellt,
+;S   so trage er hier den Systemnamen von seinem System in Kurzform mit der
+;S   Endung .Pointnr ein ...
+;S   Bsp.: Point 3 der 32:4957/100 DORF-BOX ...
+;S         ,3,DORF_BOX_.3,Wilnsdorf,Bernd_Buedenbender,49-2737-981006,9600,
+;S   Uebermaessig lange Eintraege sollten vermieden werden um die Pointlist
+;S   nicht zum "Platzen" zu bringen ....
+;S   Uebermaessige Platzfueller wie ...Mailer_System.## oder gar
+;S   ...LinuxNet_Point_## sollten ebenfalls unterbleiben.
+;S   Ein recht neuer Standard der zunehmend in der Pointliste Verbreitung
+;S   findet ist der Zusatz von Onlinezeiten des Pointsystems ans Ende
+;S   des Systemnamens. Bsp.:
+;S   ,3,Bernd's_BOX_(18-24h),Wilnsdorf,Bernd_Buedenbender,49-2737-981006,9600,V32B,V42B,XA
+;S   Man(n) merke: der Systemname ist kurz und praegnant; die Onlinezeit
+;S   wird in Kurzform in Klammern hinter den Systemnamen gehaengt ....
+;S   Ein Hinweis sei aber auch auf die Online-Flags wie in der Nodelist
+;S   beschrieben, gegeben.
+;S
+;S   Feld 4:  City
+;S   ---------------
+;S   Da ca. 70% aller City-Eintraege von Points stammen, die in groesseren
+;S   Staedten der Bundesrepublik beheimatet sind, von denen wirklich JEDER
+;S   deren Ortsnamenskuerzel kennt, sollte dazu uebergegangen werden hierfuer
+;S   Ortsnamenskuerzel zu verwenden.
+;S
+;S  Aachen AC               Aschaffenburg AB         Augsburg A
+;S  Bad-Homburg HG          Baden-Baden BAD          Berlin B od Bln
+;S  Bochum BO               Bonn BN                  Bottrop BOT
+;S  Braunschweig BS         Bremen HB                Chemnitz C
+;S  Dortmund DO             Dresden DD               Duesseldorf D
+;S  Duisburg DU             Essen E                  Flensburg FL
+;S  Frankfurt/Main FFM      Frankfurt/Oder FFO       Freiburg FR
+;S  Fulda FD                Gelsenkirchen GE         Giessen GI
+;S  Berg.-Gladbach GL       Goeppingen GP            Goettingen GOe
+;S  Gross-Gerau GG          Hagen HA                 Hamburg HH
+;S  Hanau HU                Hannover H               Heidelberg HD
+;S  Heppenheim HP           Kaiserslautern KL        Karlsruhe KA
+;S  Kassel KS               Kiel KI                  Koblenz KO
+;S  Koeln K                 Leipzig L                Leverkusen LEV
+;S  Limburg LM              Ludwigshafen LU          Luebeck HL
+;S  Mainz MZ                Mannheim MA              Marburg MR
+;S  Moenchengladbach MG     Muenchen M               Nuernberg N
+;S  Oberhausen OB           Offenbach/Main OF        Osnabrueck OS
+;S  Recklinghausen RE       Stuttgart S              Tuebingen TUe
+;S  Ulm UL                  Wiesbaden WI             Wilhelmshaven WHV
+;S  Wuerzburg WUe           Wuppertal W od W'Tal     Zwickau  Z
+;S
+;S Und hier noch ein paar Bandwuermer und wie sie abzukuerzen gehen ....
+;S
+;S  Darmstadt (auch: Stadt_Am_Darmbach) DA
+;S  Donaueschingen-Wolterdingen   Wolterdingen od. Donaueschingen
+;S  Siegen-Achenbach              SI-Achenbach  od. Siegen
+;S  Siegen-Buerbach               SI-Buerbach   od. Siegen
+;S  Siegen-Sohlbach               SI-Sohlbach   od. Siegen
+;S  Siegen-Weidenau               SI-Weidenau   od. Siegen
+;S  Siegen-Paderborn              SI-Paderborn  od. Siegen
+;S  Villingen-Schwenningen        VS-Schwenningen
+;S
+;S   Feld 7:  Max-Baud-Feld:
+;S   -----------------------
+;S   Syntax: [300|1200|2400|4800|9600]
+;S   Die max. Baud-Angabe in FTS-0005-konformen Listen ist und wird sicherlich
+;S   auch noch eine Weile bei 9600 bleiben. Fuer Modemgeschwindigkeiten ueber
+;S   9600 gilt fuer Max-Baud immer die Obergrenze: hier 9600.
+;S
+;S   Feld 8 und Folgende:  Nodelistflags
+;S   -----------------------------------
+;S   Es werden die in der Nodelist aufgefuehrten Flags benutzt.
+;S
+;S
+;S
