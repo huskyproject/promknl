@@ -17,16 +17,16 @@ pmknl$(EXE): $(PASFILES)
 	$(PC) $(POPT) pmknl.pas
 
 clean:
-	-$(RM) *$(OBJ)
-	-$(RM) *$(TPU)
-	-$(RM) *~
+	-$(RM) $(RMOPT) *$(OBJ)
+	-$(RM) $(RMOPT) *$(TPU)
+	-$(RM) $(RMOPT) *~
 
 distclean: clean
-	-$(RM) pmknl$(EXE)
+	-$(RM) $(RMOPT) pmknl$(EXE)
 
 install:
 	$(INSTALL) $(IBOPT) pmknl$(EXE) $(BINDIR)
 
 uninstall:
-	-$(RM) $(BINDIR)$(DIRSEP)pmknl$(EXE)
+	-$(RM) $(RMOPT) $(BINDIR)$(DIRSEP)pmknl$(EXE)
 
