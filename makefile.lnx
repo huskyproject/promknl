@@ -1,12 +1,14 @@
 #!/usr/bin/make -f
 
-# include Husky-Makefile-Config
-include ../huskymak.cfg
+DEBUG=1
+INCDIR=/usr/local/include
+BINDIR=/usr/local/bin
+IBOPT=
 
 ifeq ($(DEBUG), 1)
-  PASOPT = -dLinux -Fu$(INCDIR) -dDEBUG
+  POPT = -dUNIX -Fu$(INCDIR) -dDEBUG
 else
-  PASOPT = -dLinux -Fu$(INCDIR) -dRELEASE
+  POPT = -dUNIX -Fu$(INCDIR) -dRELEASE
 endif
 
 PASFILES = crc32.pas crc.pas generalp.pas inifile.pas log.pas mkdos.pas mkffile.pas mkfile.pas mkglobt.pas mkmisc.pas mkmsgabs.pas mkmsgezy.pas mkmsgfid.pas mkmsghud.pas mkmsgjam.pas mkmsgsqu.pas mkopen.pas mkstring.pas pmknl.pas types.pas
@@ -14,7 +16,7 @@ PASFILES = crc32.pas crc.pas generalp.pas inifile.pas log.pas mkdos.pas mkffile.
 all: pmknl
 
 pmknl: $(PASFILES)
-	ppc386 $(PASOPT) pmknl.pas
+	ppc386 $(POPT) pmknl.pas
 
 clean:
 	-rm *.o *.ppu *~

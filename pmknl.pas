@@ -15,7 +15,7 @@ Uses
 {$IfDef VP}
  OS2Base, OS2Def,
 {$EndIf}
-{$IfDef Linux}
+{$IfDef UNIX}
  Linux,
 {$EndIf}
  dos,
@@ -35,7 +35,7 @@ Const
 {$IfDef OS2}
  '/2 '
 {$Else}
- {$IfDef LINUX}
+ {$IfDef UNIX}
  '/Lx '
  {$Else}
   {$IfDef DPMI}
@@ -1110,7 +1110,7 @@ Var
   LogSetCurLevel(lh, 1);
   LogWriteLn(lh, 'Could not close "'+Cfg^.CreateBatch+'"!');
   End;
-{$IfDef Linux}
+{$IfDef UNIX}
  ChMod(Cfg^.CreateBatch, 493); {Octal 755}
 {$EndIf}
  LogSetCurLevel(lh, 3);
